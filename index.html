@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warga Kelurahan</title>
+</head>
+<body>
+    <h1>Daftar Warga</h1>
+
+    <!-- Form Tambah Warga -->
+    <form id="form-warga">
+        <h2>Tambah Warga</h2>
+
+        <label for="nik">NIK:</label><br>
+        <input type="text" id="nik" name="nik" required><br><br>
+
+        <label for="nama_lengkap">Nama Lengkap:</label><br>
+        <input type="text" id="nama_lengkap" name="nama_lengkap" required><br><br>
+
+        <label for="alamat">Alamat:</label><br>
+        <input type="text" id="alamat" name="alamat" required><br><br>
+
+        <label for="no_telepon">No. Telepon:</label><br>
+        <input type="text" id="no_telepon" name="no_telepon" required><br><br>
+
+        <button type="submit">Tambah Data</button>
+    </form>
+
+    <hr>
+
+    <!-- Container daftar warga -->
+    <div id="warga-list-container">
+        <p>Memuat data...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
