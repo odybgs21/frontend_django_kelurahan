@@ -4,25 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Warga Kelurahan</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* CARD FORM */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        form h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        hr {
+            margin: 40px 0;
+        }
+
+        /* LIST WARGA */
+        #warga-list-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .warga-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #4CAF50;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .warga-card h3 {
+            margin: 0 0 10px;
+        }
+
+        .warga-card p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Daftar Warga</h1>
+
+    <h1>Daftar Warga Kelurahan</h1>
 
     <!-- Form Tambah Warga -->
     <form id="form-warga">
         <h2>Tambah Warga</h2>
 
-        <label for="nik">NIK:</label><br>
-        <input type="text" id="nik" name="nik" required><br><br>
+        <label for="nik">NIK:</label>
+        <input type="text" id="nik" name="nik" required>
 
-        <label for="nama_lengkap">Nama Lengkap:</label><br>
-        <input type="text" id="nama_lengkap" name="nama_lengkap" required><br><br>
+        <label for="nama_lengkap">Nama Lengkap:</label>
+        <input type="text" id="nama_lengkap" name="nama_lengkap" required>
 
-        <label for="alamat">Alamat:</label><br>
-        <input type="text" id="alamat" name="alamat" required><br><br>
+        <label for="alamat">Alamat:</label>
+        <input type="text" id="alamat" name="alamat" required>
 
-        <label for="no_telepon">No. Telepon:</label><br>
-        <input type="text" id="no_telepon" name="no_telepon" required><br><br>
+        <label for="no_telepon">No. Telepon:</label>
+        <input type="text" id="no_telepon" name="no_telepon" required>
 
         <button type="submit">Tambah Data</button>
     </form>
@@ -31,7 +119,7 @@
 
     <!-- Container daftar warga -->
     <div id="warga-list-container">
-        <p>Memuat data...</p>
+        <p style="text-align: center; color: #666;">Memuat data...</p>
     </div>
 
     <script src="app.js"></script>
