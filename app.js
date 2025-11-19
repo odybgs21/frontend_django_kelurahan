@@ -6,30 +6,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fungsi render tampilan 1 warga
     function renderWarga(warga) {
-        const wargaDiv = document.createElement('div');
-        wargaDiv.style.border = '1px solid #ccc';
-        wargaDiv.style.padding = '10px';
-        wargaDiv.style.marginBottom = '10px';
+    const wargaDiv = document.createElement('div');
+    wargaDiv.classList.add("warga-card");
 
-        const nama = document.createElement('h3');
-        nama.textContent = warga.nama_lengkap;
+    // Header (Nama)
+    const nama = document.createElement('h3');
+    nama.textContent = warga.nama_lengkap;
 
-        const nik = document.createElement('p');
-        nik.textContent = `NIK: ${warga.nik}`;
+    // Tabel
+    const table = document.createElement('table');
+    table.style.width = "100%";
+    table.style.marginTop = "10px";
+    table.style.borderCollapse = "collapse";
 
-        const alamat = document.createElement('p');
-        alamat.textContent = `Alamat: ${warga.alamat}`;
+    // Helper untuk membuat baris tabel
+    function row(label, value) {
+        const tr = document.createElement('tr');
 
-        const telp = document.createElement('p');
-        telp.textContent = `No Telepon: ${warga.no_telepon}`;
+        const td1 = document.createElement('td');
+        td1.textContent = label;
+        td1.style.padding = "6px 0";
+        td1.style.color = "#a8b0b8";
+        td1.style.width = "130px";
+        td1.style.fontWeight = "600";
 
-        wargaDiv.appendChild(nama);
-        wargaDiv.appendChild(nik);
-        wargaDiv.appendChild(alamat);
-        wargaDiv.appendChild(telp);
+        const td2 = document.createElement('td');
+        td2.textContent = value;
+        td2.style.padding = "6px 0";
+        td2.style.color = "#e6e6e6";
 
-        return wargaDiv;
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        return tr;
     }
+
+    // Isi tabel
+    table.appendChild(row("NIK", warga.nik));
+    table.appendChild(row("Alamat", warga.alamat));
+    table.appendChild(row("No Telepon", warga.no_telepon));
+
+    // Susun ke dalam card
+    wargaDiv.appendChild(nama);
+    wargaDiv.appendChild(table);
+
+    return wargaDiv;
+}
 
     // Load data warga dari API (GET)
     fetch(apiUrl)

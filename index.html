@@ -1,127 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Warga Kelurahan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Warga Kelurahan</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 20px;
-        }
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #1e1e1e;
+        margin: 0;
+        padding: 40px;
+        color: #ecf0f1;
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #ffffff;
+        font-size: 32px;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
 
-        /* CARD FORM */
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+    /* GRID LAYOUT */
+    .layout {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 40px;
+        max-width: 1300px;
+        margin: auto;
+    }
 
-        form h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #444;
-        }
+    /* FORM CARD */
+    .form-card {
+        background: #2a2d31;
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #3a3d41;
+    }
 
-        label {
-            font-weight: bold;
-            color: #333;
-        }
+    .form-card h2 {
+        margin: 0 0 25px 0;
+        font-size: 22px;
+        color: #82e0aa;
+        text-align: center;
+        font-weight: 600;
+    }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+    label {
+        font-size: 14px;
+        color: #bfc9d4;
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 5px;
+        border: none;
+        border-bottom: 2px solid #505355;
+        background: transparent;
+        font-size: 15px;
+        color: #ecf0f1;
+        margin-bottom: 25px;
+        transition: 0.3s;
+    }
 
-        button:hover {
-            background: #45a049;
-        }
+    input[type="text"]:focus {
+        border-bottom: 2px solid #27ae60;
+        outline: none;
+    }
 
-        hr {
-            margin: 40px 0;
-        }
+    button {
+        width: 100%;
+        padding: 14px;
+        background: #27ae60;
+        color: white;
+        border: none;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 600;
+    }
 
-        /* LIST WARGA */
-        #warga-list-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    button:hover {
+        background: #1f8c4d;
+    }
 
-        .warga-card {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 5px solid #4CAF50;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
+    /* RIGHT PANEL BACKGROUND */
+    #right-panel {
+        background: #25272b;
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px solid #3a3d41;
+        height: fit-content;
+        min-height: 400px;
+    }
 
-        .warga-card h3 {
-            margin: 0 0 10px;
-        }
+    #warga-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
 
-        .warga-card p {
-            margin: 5px 0;
-        }
-    </style>
+    /* CARD WARGA */
+    .warga-card {
+        background: #2f3136;
+        border: 1px solid #3f4246;
+        padding: 18px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .warga-card:hover {
+        border-color: #27ae60;
+        transform: translateY(-3px);
+        box-shadow: 0 0 10px rgba(39, 174, 96, 0.2);
+    }
+
+    .warga-card h3 {
+        margin: 0;
+        color: #a6e3b4;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .warga-card p {
+        margin: 8px 0;
+        color: #d5d8dc;
+        font-size: 15px;
+    }
+
+    .loading {
+        text-align: center;
+        color: #8e9aa4;
+        font-size: 17px;
+    }
+</style>
 </head>
 <body>
 
-    <h1>Daftar Warga Kelurahan</h1>
+<h1 style="color:#82e0aa;">Daftar Warga Kelurahan</h1>
 
-    <!-- Form Tambah Warga -->
-    <form id="form-warga">
+<div class="layout">
+
+    <!-- FORM -->
+    <form id="form-warga" class="form-card">
         <h2>Tambah Warga</h2>
 
-        <label for="nik">NIK:</label>
-        <input type="text" id="nik" name="nik" required>
+        <label>NIK:</label>
+        <input type="text" id="nik" required placeholder="Masukkan NIK">
 
-        <label for="nama_lengkap">Nama Lengkap:</label>
-        <input type="text" id="nama_lengkap" name="nama_lengkap" required>
+        <label>Nama Lengkap:</label>
+        <input type="text" id="nama_lengkap" required placeholder="Masukkan nama lengkap">
 
-        <label for="alamat">Alamat:</label>
-        <input type="text" id="alamat" name="alamat" required>
+        <label>Alamat:</label>
+        <input type="text" id="alamat" required placeholder="Masukkan alamat">
 
-        <label for="no_telepon">No. Telepon:</label>
-        <input type="text" id="no_telepon" name="no_telepon" required>
+        <label>No. Telepon:</label>
+        <input type="text" id="no_telepon" required placeholder="Masukkan nomor telepon">
 
         <button type="submit">Tambah Data</button>
     </form>
 
-    <hr>
-
-    <!-- Container daftar warga -->
-    <div id="warga-list-container">
-        <p style="text-align: center; color: #666;">Memuat data...</p>
+    <!-- RIGHT COLUMN WITH BACKGROUND -->
+    <div id="right-panel">
+        <div id="warga-list-container">
+            <p class="loading">Memuat data...</p>
+        </div>
     </div>
 
-    <script src="app.js"></script>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
